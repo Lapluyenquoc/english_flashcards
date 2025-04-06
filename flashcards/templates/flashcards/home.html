@@ -1,0 +1,9 @@
+<!-- flashcards/templates/flashcards/home.html -->
+{% extends "flashcards/base.html" %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Добро пожаловать в приложение для изучения английского!</h1>
+    <a href="{% url 'deck-list' %}" class="btn btn-success">Посмотреть все колоды</a>
+{% endblock %}

@@ -1,0 +1,25 @@
+<!-- flashcards/templates/flashcards/deck_detail.html -->
+{% extends "flashcards/base.html" %}
+
+{% block title %}{{ deck.name }}{% endblock %}
+
+{% block content %}
+    <h2>{{ deck.name }}</h2>
+    <a href="{% url 'flashcard-create' deck_id=deck.id %}" class="btn btn-primary mb-3">Добавить карточку</a>
+    
+    <ul class="list-group">
+        {% for flashcard in deck.flashcards.all %}
+            <li class="list-group-item d-flex justify-content-between">
+                <div>
+                    <strong>{{ flashcard.front }}</strong><br>
+                    {{ flashcard.back }}
+                </div>
+                <div>
+                    <a href="{% url 'flashcard-update' pk=flashcard.id %}" class="btn btn-sm btn-warning">Изменить</a>
+                    <a href="{% url 'flashcard-delete' pk=flashcard.id %}" class="btn btn-sm btn-danger">Удалить</a>
+                    <a href="{% url 'deck-study' pk=deck.id %}" class="btn btn-success mb-3">Начать обучение</a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

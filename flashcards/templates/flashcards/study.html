@@ -1,0 +1,28 @@
+<!-- flashcards/templates/flashcards/study.html -->
+{% extends "flashcards/base.html" %}
+
+{% block title %}Учить: {{ deck.name }}{% endblock %}
+
+{% block content %}
+    <h2>Учим колоду: {{ deck.name }}</h2>
+    <div id="flashcard-container" class="my-4">
+        {% for flashcard in flashcards %}
+            <div class="card mb-3" style="cursor: pointer;" onclick="flipCard(this)">
+                <div class="card-body front">
+                    <p class="card-text">{{ flashcard.front }}</p>
+                </div>
+                <div class="card-body back d-none">
+                    <p class="card-text">{{ flashcard.back }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <script>
+        function flipCard(card) {
+            const front = card.querySelector('.front');
+            const back = card.querySelector('.back');
+            front.classList.toggle('d-none');
+            back.classList.toggle('d-none');
+        }
+    </script>
+{% endblock %}

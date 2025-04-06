@@ -1,0 +1,26 @@
+<!-- flashcards/templates/flashcards/deck_list.html -->
+{% extends "flashcards/base.html" %}
+
+{% block content %}
+    <h2>Мои колоды</h2>
+    
+    <!-- Nút tạo deck -->
+    <a href="{% url 'deck-create' %}" class="btn btn-primary mb-3">Создать колоду</a>
+
+    {% if decks %}
+        <ul class="list-group">
+            {% for deck in decks %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="{% url 'deck-detail' pk=deck.id %}">{{ deck.name }}</a>
+                    <div>
+                        <span class="badge bg-primary rounded-pill me-2">{{ deck.flashcards.count }} карточек</span>
+                        <a href="{% url 'deck-delete' pk=deck.id %}" class="btn btn-sm btn-danger">Удалить</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>У вас пока нет колод. Создайте новую!</p>
+    {% endif %}
+{% endblock %}
+
