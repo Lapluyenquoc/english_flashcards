@@ -60,14 +60,14 @@ class DeckListView(ListView):
 # flashcards/views.py
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from .forms import RegistrationForm  # Đảm bảo đã tạo form này
+from .forms import RegistrationForm  
 
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)  # Đăng nhập tự động sau khi đăng ký
+            login(request, user) 
             return redirect('home')
     else:
         form = RegistrationForm()
@@ -77,12 +77,12 @@ from django.contrib.auth.views import LoginView
 
 class CustomLoginView(LoginView):
     template_name = 'flashcards/login.html'
-    redirect_authenticated_user = True  # Chuyển hướng nếu đã đăng nhập
+    redirect_authenticated_user = True  
 # flashcards/views.py
 from django.contrib.auth.views import LogoutView
 
 class CustomLogoutView(LogoutView):
-    next_page = 'home'  # Trang chuyển hướng sau khi đăng xuất
+    next_page = 'home'  
 # flashcards/views.py
 from django.views.generic import DetailView
 from django.shortcuts import redirect
@@ -110,11 +110,11 @@ class DeckCreateView(CreateView):
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['user'] = self.request.user  # Truyền user vào form
+        kwargs['user'] = self.request.user  
         return kwargs
 
     def form_valid(self, form):
-        form.instance.user = self.request.user  # Gán user cho deck
+        form.instance.user = self.request.user  
         return super().form_valid(form)
 
     def get_success_url(self):
