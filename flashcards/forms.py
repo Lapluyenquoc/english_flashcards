@@ -36,7 +36,7 @@ from .models import Deck
 # flashcards/forms.py
 class DeckForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        self.user = kwargs.pop('user', None)  # Lấy user từ kwargs
+        self.user = kwargs.pop('user', None)  
         super().__init__(*args, **kwargs)
 
     def clean_name(self):
@@ -57,14 +57,14 @@ from .models import Flashcard
 class FlashcardForm(forms.ModelForm):
     class Meta:
         model = Flashcard
-        fields = ['front', 'back', 'example_sentence']  # ← Thêm 'example_sentence'
+        fields = ['front', 'back', 'example_sentence'] 
         labels = {
             'front': 'Передняя сторона (русский)',
             'back': 'Задняя сторона (английский)',
-            'example_sentence': 'Пример предложения (английский)',  # ← Thêm label
+            'example_sentence': 'Пример предложения (английский)', 
         }
         widgets = {
             'front': forms.Textarea(attrs={'rows': 2}),
             'back': forms.Textarea(attrs={'rows': 2}),
-            'example_sentence': forms.Textarea(attrs={'rows': 3}),  # ← Thêm widget
+            'example_sentence': forms.Textarea(attrs={'rows': 3}), 
         }
