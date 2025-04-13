@@ -3,7 +3,6 @@ from django.urls import reverse_lazy
 from .models import Flashcard, Deck
 from .forms import FlashcardForm, RegistrationForm
 
-# Tạo thẻ mới
 class FlashcardCreateView(CreateView):
     model = Flashcard
     form_class = FlashcardForm
@@ -17,7 +16,6 @@ class FlashcardCreateView(CreateView):
     def get_success_url(self):
         return reverse_lazy('deck-detail', kwargs={'pk': self.kwargs['deck_id']})
 
-# Cập nhật thẻ
 class FlashcardUpdateView(UpdateView):
     model = Flashcard
     form_class = FlashcardForm
@@ -26,7 +24,6 @@ class FlashcardUpdateView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('deck-detail', kwargs={'pk': self.object.deck_id})
 
-# Xóa thẻ
 class FlashcardDeleteView(DeleteView):
     model = Flashcard
     template_name = 'flashcards/flashcard_confirm_delete.html'
