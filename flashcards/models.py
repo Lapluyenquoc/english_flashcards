@@ -17,12 +17,12 @@ class Deck(models.Model):
 
 class Flashcard(models.Model):
     deck = models.ForeignKey(Deck, related_name='flashcards', on_delete=models.CASCADE, verbose_name="Колода")
-    front = models.TextField(verbose_name="Передняя сторона (русский)")  # Tiếng Nga
-    back = models.TextField(verbose_name="Задняя сторона (английский)")   # Tiếng Anh
+    front = models.TextField(verbose_name="Передняя сторона (русский)")  
+    back = models.TextField(verbose_name="Задняя сторона (английский)")   
     created_at = models.DateTimeField(auto_now_add=True)
-    example_sentence = models.TextField(  # ← Thêm dòng này
+    example_sentence = models.TextField(  
         verbose_name="Пример предложения (английский)",
-        blank=True, null=True  # Cho phép trống
+        blank=True, null=True  
     )
     def __str__(self):
         return f"{self.front} → {self.back}"
