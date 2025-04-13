@@ -17,7 +17,6 @@ from .views import (
 )
 
 urlpatterns = [
-    # ... các URL trước đây
     path('decks/<int:pk>/', DeckDetailView.as_view(), name='deck-detail'),
     path('decks/<int:deck_id>/add/', FlashcardCreateView.as_view(), name='flashcard-create'),
     path('flashcards/<int:pk>/edit/', FlashcardUpdateView.as_view(), name='flashcard-update'),
